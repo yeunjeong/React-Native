@@ -5,13 +5,7 @@ console.dir(title1);
 console.dir(title2);
 
 function handleClickEvent(){
-    color = title1.style.color;
-    if (color === "pink"){
-        title1.style.color = "black";
-    } else {
-        title1.style.color = "pink";
-    }
+    title1.classList.toggle("font2");
 }
 
 title1.addEventListener("click", handleClickEvent);
-
