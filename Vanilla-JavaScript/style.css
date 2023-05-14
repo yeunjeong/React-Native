@@ -3,13 +3,9 @@ body {
 }
 
 h1 {
-    color: yellow;
+    color: rgb(0, 0, 0);
 }
 
-.font1 {
-    color: pink;
-}
-
-.font2 {
-    color: aqua;
+.hidden {
+    display: none;
 }

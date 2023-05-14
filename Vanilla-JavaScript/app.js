@@ -1,19 +1,33 @@
-const quizForm = document.querySelector("#quiz");
-const quizInput = document.querySelector("#quiz input");
+const loginForm = document.querySelector("#id_input");
+const loginInput = loginForm.querySelector("input");
+const greetingForm = document.querySelector("#greeting");
 
-console.log(quizInput.placeholder);
-console.dir(quizForm);
+console.dir(loginInput);
 
-function clickQuizBtnEvent(event) {
-    event.preventDefault();
-    const value = quizInput.value;
-    if(value === ""){
-        console.log("입력이 없어요오...");
-    } else if(value === "심볼리 루돌프") {
-        console.log("정답!");
-    } else {
-        console.log("뒤질래?");
-    }
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
+
+function onLoginSubmit(event) {
+    event.preventDefault(); // submit의 기본 기능을 끈다.
+
+    loginForm.classList.add(HIDDEN_CLASSNAME);
+    const username = loginInput.value;
+    localStorage.setItem(USERNAME_KEY, username); // username을 local storage에 저장한다.
+
+    paintGreeting(username);
 }
- 
-quizForm.addEventListener("submit", clickQuizBtnEvent);
+
+function paintGreeting(username) {
+    greetingForm.classList.remove(HIDDEN_CLASSNAME);
+    greetingForm.querySelector("h1").textContent = `Hello ${username}`;
+}
+
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if (savedUsername == null) {
+    loginForm.classList.remove(HIDDEN_CLASSNAME);
+    loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+    paintGreeting(savedUsername);
+}
